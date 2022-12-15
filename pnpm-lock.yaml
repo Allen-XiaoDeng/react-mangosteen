@@ -7,6 +7,7 @@ specifiers:
   '@types/react-dom': 18.0.6
   '@vitejs/plugin-react': 2.1.0
   axios: 1.2.1
+  classnames: 2.3.2
   eslint: 8.29.0
   mockjs: 1.1.0
   react: 18.2.0
@@ -25,6 +26,7 @@ specifiers:
 dependencies:
   '@react-spring/web': 9.5.5_biqbaboplfbrettd7655fr4n2y
   axios: 1.2.1
+  classnames: 2.3.2
   mockjs: 1.1.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -1277,6 +1279,10 @@ packages:
     resolution: {integrity: sha512-2CpRNYmImPx+RXKLq6jko/L07phmS9I02TyqkcNU20GCF/GgaWvc58hPtjxDX8lPpkdwc9sNh72V9k00S7ezog==}
     engines: {node: '>=8'}
     dev: true
+
+  /classnames/2.3.2:
+    resolution: {integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==}
+    dev: false
 
   /clean-regexp/1.0.0:
     resolution: {integrity: sha512-GfisEZEJvzKrmGWkvfhgzcz/BllN1USeqD2V6tg14OAOgaCD2Z/PUEuxnAZ/nPvmaHRG7a8y77p1T/IRQ4D1Hw==}
