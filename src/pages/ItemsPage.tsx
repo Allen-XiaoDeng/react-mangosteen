@@ -4,7 +4,7 @@ import { AddItemFloatButton } from '../components/AddItemFloatButton'
 import { TimeRangePicker } from '../components/TimeRangePicker'
 import { TopNav } from '../components/TopNav'
 import { TopMenu } from '../components/TopMenu'
-import { menuContext } from '../contexts/menuContext'
+import { useMenuStore } from '../stores/useMenuStore'
 import type { TimeRange } from '../components/TimeRangePicker'
 import { ItemsList } from './ItemsPage/ItemsList'
 import { ItemsSummary } from './ItemsPage/ItemsSummary'
@@ -14,7 +14,7 @@ const Div = styled.div`
 
 export const ItemsPage: React.FC = () => {
   const [timeRange, setTimeRange] = useState<TimeRange>('thisMonth')
-  const [visible, setVisible] = useState(false)
+  const { visible } = useMenuStore()
   const [items] = useState<Item[]>([
     {
       id: 1,
@@ -38,16 +38,14 @@ export const ItemsPage: React.FC = () => {
   ])
   return (
     <div>
-      <menuContext.Provider value={{ setVisible }}>
-        <Div>
-          <TopNav />
-          <TimeRangePicker selected={timeRange} onSelected={setTimeRange} />
-        </Div>
-        <ItemsSummary />
-        <ItemsList items={items} />
-        <AddItemFloatButton />
-        {visible ? <TopMenu /> : null}
-      </menuContext.Provider>
+      <Div>
+        <TopNav />
+        <TimeRangePicker selected={timeRange} onSelected={setTimeRange} />
+      </Div>
+      <ItemsSummary />
+      <ItemsList items={items} />
+      <AddItemFloatButton />
+      {visible ? <TopMenu /> : null}
     </div>
   )
 }
