@@ -22,7 +22,7 @@ export const ItemsPage: React.FC = () => {
             onClick={() => { setVisible(!visible) }}
           />
         } />
-        <TimeRangePicker selected={timeRange} onSelected={setTimeRange} />
+        <TimeRangePicker selected={timeRange} onSelect={setTimeRange} />
       </Gradient>
       <ItemsSummary />
       <ItemsList />
