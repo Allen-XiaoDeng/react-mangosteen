@@ -22,8 +22,8 @@ export const ItemsPage: React.FC = () => {
             onClick={() => { setVisible(!visible) }}
           />
         } />
-        <TimeRangePicker selected={timeRange} onSelect={setTimeRange} />
       </Gradient>
+      <TimeRangePicker selected={timeRange} onSelect={setTimeRange} />
       <ItemsSummary />
       <ItemsList />
       <AddItemFloatButton />
