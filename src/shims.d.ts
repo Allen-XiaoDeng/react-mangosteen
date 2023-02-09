@@ -2,8 +2,10 @@ import * as React from 'react'
 declare module 'react' {
   interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
     flex?: boolean
+    absolute?: boolean
     relative?: boolean
     text?: string
+    top?: string
     grid?: boolean
     before?: string
     after?: string
