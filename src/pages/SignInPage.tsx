@@ -40,21 +40,16 @@ export const SignInPage: React.FC = () => {
         <h1 text-32px text="#7878FF" font-bold>山竹记账</h1>
       </div>
       <form j-form onSubmit={onSubmit}>
-        <Input label='邮箱地址' placeholder='请输入邮箱，然后点击发送验证码'
+        <Input label='邮箱地址' type='text' placeholder='请输入邮箱，然后点击发送验证码'
           value={data.email} onChange={value => setData({ email: value })}
           error={error.email?.[0]} />
-        <span j-form-label>验证码 {error.code?.[0] && <span text-red>{error.code[0]}</span>}</span>
-        <div flex gap-x-16px>
-          <input shrink-1
-            max-w="[calc(40%-8px)]"
-            j-input-text type="text" placeholder='六位数字'
-            value={data.code} onChange={e => setData({ code: e.target.value })} />
-          <button max-w="[calc(60%-8px)]" shrink-0 j-btn>发送验证码</button>
+        <Input label='验证码' type="sms_code" placeholder='六位数字' value={data.code}
+          onChange={value => setData({ code: value })}
+          error={error.code?.[0]} />
+        <div mt-100px>
+          <button j-btn type="submit" >登录</button>
         </div>
-      <div mt-100px>
-        <button j-btn type="submit" >登录</button>
-      </div>
-    </form>
+      </form>
     </>
   )
 }
