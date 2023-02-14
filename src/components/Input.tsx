@@ -11,7 +11,7 @@ type Props = {
 }
 
 export const Input: React.FC<Props> = (props) => {
-  const { label, placeholder, type, value, onChange, error } = props
+  const { label, placeholder, type = 'text', value, onChange, error } = props
   const renderInput = () => {
     switch (type) {
       case 'text':
