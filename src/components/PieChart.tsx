@@ -10,14 +10,16 @@ export const PieChart: React.FC<Props> = (props) => {
   const { className, items } = props
   const div = useRef<HTMLDivElement>(null)
   useEffect(() => {
-    if (!div.current) { return }
+    if (!div.current) {
+      return
+    }
     const myChart = echarts.init(div.current)
     const option: EChartsOption = {
       tooltip: { trigger: 'item' },
       grid: { top: 0, left: 0, bottom: 0, right: 0 },
       series: [{
         type: 'pie',
-        radius: '50%',
+        radius: '90%',
         data: items?.map(item => ({ value: item.y, name: item.x })),
       }]
     }
