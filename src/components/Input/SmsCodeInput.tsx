@@ -21,29 +21,26 @@ export const SmsCodeInput: React.FC<Props> = (props) => {
     await request()
     setStarted(new Date())
   }
+  const clearTimer = () => {
+    if (timer.current) {
+      window.clearInterval(timer.current)
+      timer.current = undefined
+    }
+  }
   useEffect(() => {
-    if (started) {
-      timer.current = window.setInterval(() => {
-        const t = new Date()
-        const seconds = Math.round((t.getTime() - started.getTime()) / 1000)
-        if (maxCount - seconds < 0) {
-          setStarted(undefined)
-        }
-        setCount(maxCount - seconds)
-      }, 1000)
+    if (!started) {
+      clearTimer()
+      return
     }
-    else {
-      if (timer.current) {
-        window.clearInterval(timer.current)
-        timer.current = undefined
+    timer.current = window.setInterval(() => {
+      const seconds = Math.round((new Date().getTime() - started.getTime()) / 1000)
+      const count = maxCount - seconds
+      if (count < 0) {
+        setStarted(undefined)
       }
-    }
-    return () => {
-      if (timer.current) {
-        window.clearInterval(timer.current)
-        timer.current = undefined
-      }
-    }
+      setCount(count)
+    }, 1000)
+    return clearTimer
   }, [started])
 
   return (
@@ -51,7 +48,7 @@ export const SmsCodeInput: React.FC<Props> = (props) => {
       <input shrink-1 j-input-text type="text" placeholder={placeholder} max-w="[calc(40%-8px)]"
         value={value} onChange={e => onChange?.(e.target.value)} />
       {started
-        ? <button type="button" max-w="[calc(60%-8px)]" shrink-0 j-btn disabled text-gray>{count}</button>
+        ? <button type="button" max-w="[calc(60%-8px)]" shrink-0 j-btn disabled text-gray>{count}秒可重新发送</button>
         : <button type="button" max-w="[calc(60%-8px)]" shrink-0 j-btn onClick={onClick}>
           发送验证码
         </button>
