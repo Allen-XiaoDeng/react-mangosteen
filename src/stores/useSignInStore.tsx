@@ -14,9 +14,10 @@ interface SignIn {
 }
 
 export const useSignInStore = create<SignIn>((set, get) => (
+  // TODO: 删除默认邮箱地址
   {
     data: {
-      email: '',
+      email: 'guolong613@gmail.com',
       code: ''
     },
     error: {

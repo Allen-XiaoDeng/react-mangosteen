@@ -40,8 +40,9 @@ export const SignInPage: React.FC = () => {
       console.log('没错')
     }
     // TODO 请求
-    const response = await axios.post('')
-
+    const response = await axios.post('http://121.196.236.94:8080/api/v1/validation_codes', {
+      email: data.email
+    })
     return response
   }
 
