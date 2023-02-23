@@ -1,5 +1,6 @@
 import type { FormEventHandler } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import { Gradient } from '../components/Gradient'
 import { Icon } from '../components/Icon'
 import { TopNav } from '../components/TopNav'
@@ -27,7 +28,7 @@ export const SignInPage: React.FC = () => {
       nav('/home')
     }
   }
-  const onClickCode = () => {
+  const sendSmsCode = async () => {
     const newError = validate({ email: data.email }, [
       { key: 'email', type: 'pattern', regex: /^.+@.+$/, message: '邮箱地址格式不正确' }
     ])
@@ -39,6 +40,9 @@ export const SignInPage: React.FC = () => {
       console.log('没错')
     }
     // TODO 请求
+    const response = await axios.post('')
+
+    return response
   }
 
   return (
@@ -58,10 +62,10 @@ export const SignInPage: React.FC = () => {
           error={error.email?.[0]} />
         <Input
           error={error.code?.[0]}
-          onClick={onClickCode}
+          request={sendSmsCode}
           label='验证码' type="sms_code" placeholder='六位数字' value={data.code}
           onChange={value => setData({ code: value })}
-          error={error.code?.[0]} />
+        />
         <div mt-100px>
           <button j-btn type="submit" >登录</button>
         </div>
