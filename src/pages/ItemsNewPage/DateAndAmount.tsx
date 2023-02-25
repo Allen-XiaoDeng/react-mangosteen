@@ -1,3 +1,4 @@
+/* eslint-disable max-statements-per-line */
 import { useState } from 'react'
 import { Datepicker } from '../../components/Datepiker'
 import { Icon } from '../../components/Icon'
@@ -22,12 +23,11 @@ export const DateAndAmount: React.FC<Props> = (props) => {
   }
 
   const { className } = props
-  const { toggle, popup, hide } = usePopup(false, <Datepicker
-    onConfirm={(d) => {
-      setDate(d)
-      hide()
-    }}
-    onCancel={() => hide()} />)
+  const { toggle, popup, hide } = usePopup({
+    children: <Datepicker
+      onConfirm={d => { setDate(d); hide() }}
+      onCancel={() => hide()} />
+  })
   const append = (char: string) => {
     switch (char) {
       case '0':
