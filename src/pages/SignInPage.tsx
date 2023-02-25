@@ -40,7 +40,7 @@ export const SignInPage: React.FC = () => {
       localStorage.setItem('jwt', jwt)
 
       // 回到首页
-      nav('/home')
+      nav('/items')
     }
   }
   const { post } = useAjax({ showLoading: true })
