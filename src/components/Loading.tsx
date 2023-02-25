@@ -25,11 +25,13 @@ export const Loading: React.FC<Props> = ({ className, message, size }) => {
   return (
     <Div className={c('flex flex-col justify-center items-center', className)}>
       {size === 'large'
-        ? <>
+        ? <div>
           <Icon name="loading" className='w-128px h-128px' />
           <p p-8px text-lg>{message || '加载中……'}</p>
-        </>
-        : <Icon name="loading" className='w-24px h-24px' />
+        </div>
+        : <div p-16px>
+          <Icon name="loading" className='w-32px h-32px' />
+        </div>
       }
     </Div>
   )
