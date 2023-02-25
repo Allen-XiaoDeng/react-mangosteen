@@ -12,6 +12,7 @@ import { hasError, validate } from '../lib/validate'
 import { useSignInStore } from '../stores/useSignInStore'
 import { Input } from '../components/Input'
 import { usePopup } from '../hooks/usePopup'
+import { Loading } from '../components/Loading'
 
 export const SignInPage: React.FC = () => {
   const { data, error, setData, setError } = useSignInStore()
@@ -45,7 +46,12 @@ export const SignInPage: React.FC = () => {
       nav('/home')
     }
   }
-  const { popup, hide, show } = usePopup({ children: <div>加载中</div>, position: 'center' })
+  const { popup, hide, show } = usePopup({
+    children: <div p-16px>
+      <Loading />
+    </div>,
+    position: 'center'
+  })
   const sendSmsCode = async () => {
     const newError = validate({ email: data.email }, [
       { key: 'email', type: 'pattern', regex: /^.+@.+$/, message: '邮箱地址格式不正确' }
