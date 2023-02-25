@@ -20,7 +20,7 @@ specifiers:
   styled-components: 5.3.6
   svgo: 3.0.2
   svgstore: 3.0.1
-  swr: 2.0.0
+  swr: 2.0.3
   typescript: 4.6.4
   unocss: 0.47.5
   vh-check: 2.0.5
@@ -39,7 +39,7 @@ dependencies:
   react-router-dom: 6.4.2_biqbaboplfbrettd7655fr4n2y
   sass: 1.56.2
   styled-components: 5.3.6_biqbaboplfbrettd7655fr4n2y
-  swr: 2.0.0_react@18.2.0
+  swr: 2.0.3_react@18.2.0
   vh-check: 2.0.5
   zustand: 4.1.5_react@18.2.0
 
@@ -3733,8 +3733,8 @@ packages:
       cheerio: 1.0.0-rc.10
     dev: true
 
-  /swr/2.0.0_react@18.2.0:
-    resolution: {integrity: sha512-IhUx5yPkX+Fut3h0SqZycnaNLXLXsb2ECFq0Y29cxnK7d8r7auY2JWNbCW3IX+EqXUg3rwNJFlhrw5Ye/b6k7w==}
+  /swr/2.0.3_react@18.2.0:
+    resolution: {integrity: sha512-sGvQDok/AHEWTPfhUWXEHBVEXmgGnuahyhmRQbjl9XBYxT/MSlAzvXEKQpyM++bMPaI52vcWS2HiKNaW7+9OFw==}
     engines: {pnpm: '7'}
     peerDependencies:
       react: ^16.11.0 || ^17.0.0 || ^18.0.0
