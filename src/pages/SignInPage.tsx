@@ -5,7 +5,7 @@ import type { AxiosError } from 'axios'
 import { Gradient } from '../components/Gradient'
 import { Icon } from '../components/Icon'
 import { TopNav } from '../components/TopNav'
-import { ajax, useAjax } from '../lib/ajax'
+import { useAjax } from '../lib/ajax'
 import type { FormError } from '../lib/validate'
 import { hasError, validate } from '../lib/validate'
 import { useSignInStore } from '../stores/useSignInStore'
@@ -31,7 +31,7 @@ export const SignInPage: React.FC = () => {
     setError(newError)
     if (!hasError(newError)) {
       // 发送请求
-      const response = await ajax.post<{ jwt: string }>('http://106.14.66.155:8080/api/v1/session', data)
+      const response = await post<{ jwt: string }>('http://106.14.66.155:8080/api/v1/session', data)
         .catch(onSubmitError)
 
       // 获取 JWT
