@@ -4,6 +4,7 @@
     "curly": "off",
     "arrow-parens": "off",
     "new-parens": "off",
+    "object-property-newline": "off",
     "max-statements-per-line": "off",
     "@typescript-eslint/indent": "off",
     "@typescript-eslint/no-use-before-define": "off",

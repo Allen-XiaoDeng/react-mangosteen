@@ -1,4 +1,4 @@
-var isDev:boolean
+var isDev: boolean
 type JSONValue = string | number | boolean | null | { [k: string]: JSONValue } | JSONValue[]
 interface Resource<T> {
   resource: T
@@ -37,7 +37,7 @@ interface Tag {
   user_id: number
   name: string
   sign: string
-  deleted_at: string
   created_at: string
   updated_at: string
+  deleted_at: string | null
 }
