@@ -4,6 +4,7 @@ import { Gradient } from '../components/Gradient'
 import { Icon } from '../components/Icon'
 import { Tabs } from '../components/Tabs'
 import { TopNav } from '../components/TopNav'
+import { useCreateItemStore } from '../stores/useCreateItemStore'
 import { DateAndAmount } from './ItemsNewPage/DateAndAmount'
 import { Tags } from './ItemsNewPage/Tags'
 import s from './ItemsNewPage.module.scss'
@@ -15,6 +16,7 @@ export const ItemsNewPage: React.FC = () => {
       { key: 'income', text: '收入', element: <Tags kind="income" /> }
     ]
   const [tabItem, setTabItem] = useState<Item['kind']>('income')
+  const { data, error, setData, setError } = useCreateItemStore()
 
   return (
     <div className={s.wrapper} h-screen flex flex-col>
