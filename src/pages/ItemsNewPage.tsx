@@ -8,6 +8,7 @@ import { useCreateItemStore } from '../stores/useCreateItemStore'
 import { DateAndAmount } from './ItemsNewPage/DateAndAmount'
 import { Tags } from './ItemsNewPage/Tags'
 import s from './ItemsNewPage.module.scss'
+import { ItemDate } from './ItemsNewPage/ItemDate'
 
 export const ItemsNewPage: React.FC = () => {
   const { data, error, setData, setError } = useCreateItemStore()
@@ -38,7 +39,7 @@ export const ItemsNewPage: React.FC = () => {
         onChange={(item) => { setData({ kind: item }) }}
       />
       <div text-28px>{JSON.stringify(data)}</div>
-      <DateAndAmount className="grow-0 shrink-0" />
+      <DateAndAmount className="grow-0 shrink-0" itemDate={<ItemDate />} />
     </div>
   )
 }
