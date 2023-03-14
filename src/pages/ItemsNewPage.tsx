@@ -1,4 +1,4 @@
-import type { FormEventHandler, ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { useState } from 'react'
 import { Gradient } from '../components/Gradient'
 import { Icon } from '../components/Icon'
@@ -13,7 +13,7 @@ import s from './ItemsNewPage.module.scss'
 import { ItemDate } from './ItemsNewPage/ItemDate'
 
 export const ItemsNewPage: React.FC = () => {
-  const { data, error, setData, setError } = useCreateItemStore()
+  const { data, setData, setError } = useCreateItemStore()
   const tabItems: { key: Item['kind']; text: string; element?: ReactNode }[]
     = [
       {
@@ -24,10 +24,7 @@ export const ItemsNewPage: React.FC = () => {
         key: 'income', text: '收入', element:
           <Tags kind="income" value={data.tag_ids} onChange={(ids) => setData({ tag_ids: ids })} />
       }
-
-    ]
-  const [tabItem, setTabItem] = useState<Item['kind']>('income')
-
+    ] // React DOM diff 优化
   const { post } = useAjax({ showLoading: true, handleError: true })
   const onSubmit = async () => {
     const error = validate(data, [
@@ -49,24 +46,24 @@ export const ItemsNewPage: React.FC = () => {
     }
   }
 
-    return (
-      <div className={s.wrapper} h-screen flex flex-col onSubmit={onSubmit}>
-        <Gradient className="grow-0 shrink-0">
-          <TopNav title="记一笔" icon={<Icon name="back" />} />
-        </Gradient>
-        <Tabs
-          classPrefix='itemsNewPage'
-          tabItems={tabItems}
-          className="text-center grow-1 shrink-1 overflow-hidden"
-          value={data.kind!}
-          onChange={(item) => { setData({ kind: item }) }}
-        />
-        {/* <div text-28px>{JSON.stringify(data)}</div> */}
-        <ItemAmount className="grow-0 shrink-0" itemDate={
-          <ItemDate value={data.happen_at} onChange={(happen_at) => setData({ happen_at })} />
-        } value={data.amount} onChange={amount => setData({ amount })}
-          onSubmit={onSubmit}
-        />
-      </div>
-    )
-  }
+  return (
+    <div className={s.wrapper} h-screen flex flex-col onSubmit={onSubmit}>
+      <Gradient className="grow-0 shrink-0">
+        <TopNav title="记一笔" icon={<Icon name="back" />} />
+      </Gradient>
+      <Tabs
+        classPrefix='itemsNewPage'
+        tabItems={tabItems}
+        className="text-center grow-1 shrink-1 overflow-hidden"
+        value={data.kind!}
+        onChange={(item) => { setData({ kind: item }) }}
+      />
+      {/* <div text-28px>{JSON.stringify(data)}</div> */}
+      <ItemAmount className="grow-0 shrink-0" itemDate={
+        <ItemDate value={data.happen_at} onChange={(happen_at) => setData({ happen_at })} />
+      } value={data.amount} onChange={amount => setData({ amount })}
+        onSubmit={onSubmit}
+      />
+    </div>
+  )
+}
