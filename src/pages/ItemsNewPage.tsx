@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react'
-import { useState } from 'react'
+import { BackIcon } from '../components/BackIcon'
 import { Gradient } from '../components/Gradient'
-import { Icon } from '../components/Icon'
 import { Tabs } from '../components/Tabs'
 import { TopNav } from '../components/TopNav'
 import { useCreateItemStore } from '../stores/useCreateItemStore'
@@ -41,15 +40,13 @@ export const ItemsNewPage: React.FC = () => {
     } else {
       const response = await post<Resource<Item>>('/api/v1/items', data)
       console.log(response.data.resource)
-    } const onSubmit = () => {
-      console.log('你要提交是吧')
     }
   }
 
   return (
     <div className={s.wrapper} h-screen flex flex-col onSubmit={onSubmit}>
       <Gradient className="grow-0 shrink-0">
-        <TopNav title="记一笔" icon={<Icon name="back" />} />
+        <TopNav title="记一笔" icon={<BackIcon />} />
       </Gradient>
       <Tabs
         classPrefix='itemsNewPage'
