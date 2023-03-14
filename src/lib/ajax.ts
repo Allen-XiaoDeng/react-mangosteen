@@ -1,4 +1,3 @@
-/* eslint-disable max-statements-per-line */
 // 解耦
 // 最小知识原则
 // 1. 一个函数只做一件事
@@ -53,7 +52,7 @@ export const useAjax = (options?: Options) => {
     if (error.response) {
       if (handleError) {
         const { status } = error.response
-        const fn = table[status] || table.unknown
+        const fn = table[status]
         fn?.()
       }
     }
