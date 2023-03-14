@@ -12,6 +12,7 @@ type Props = {
 const Div = styled.div`
   padding: 16px;
   text-align: center;
+  color: #999;
 `
 const getKey = (pageIndex: number, prev: Resources<Item>) => {
   if (prev) {
@@ -72,7 +73,7 @@ export const Tags: React.FC<Props> = (props) => {
         </ol>
         {error && <Div>数据加载失败，请刷新页面</Div>}
         {!hasMore
-          ? <Div>没有更多数据了</Div>
+          ? page === 1 && last.resources.length === 0 ? <Div>点击加号，创建新标签</Div> : <Div>没有更多数据了</Div>
           : isLoading
             ? <Div>数据加载中...</Div>
             : <Div><button j-btn onClick={onLoadMore}>加载更多</button></Div>}
