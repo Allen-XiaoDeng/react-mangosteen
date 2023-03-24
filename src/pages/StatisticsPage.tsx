@@ -12,7 +12,7 @@ import { Input } from '../components/Input'
 import { useAjax } from '../lib/ajax'
 import { time } from '../lib/time'
 
-type Groups = { happened_at: string; amount: number }[]
+type Groups = { happen_at: string; amount: number }[]
 export const StatisticsPage: React.FC = () => {
   const [timeRange, setTimeRange] = useState<TimeRange>('thisMonth')
   const { get } = useAjax({ showLoading: false, handleError: true })
@@ -32,10 +32,11 @@ export const StatisticsPage: React.FC = () => {
   const { data: items } = useSWR(`api/v1/items/summary?happened_after=${start}&happened_before=${end}&kind=${kind}&group_by=happen_at`,
     async (path) =>
       (await get<{ groups: Groups; total: number }>(path)).data.groups
-        .map(({ happened_at, amount }) => ({ x: happened_at, y: amount }))
+        .map(({ happen_at, amount }) => ({ x: happen_at, y: amount }))
   )
 
   useEffect(() => {
+    console.log('items', items)
   }, [items])
 
   const items2 = [
