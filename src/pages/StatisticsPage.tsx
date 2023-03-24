@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import useSWR from 'swr'
 import { Gradient } from '../components/Gradient'
 import { Icon } from '../components/Icon'
 import type { TimeRange } from '../components/TimeRangePicker'
@@ -8,32 +9,35 @@ import { LineChart } from '../components/LineChart'
 import { PieChart } from '../components/PieChart'
 import { RankChart } from '../components/RankChart'
 import { Input } from '../components/Input'
+import { useAjax } from '../lib/ajax'
+import { time } from '../lib/time'
 
+type Groups = { happened_at: string; amount: number }[]
 export const StatisticsPage: React.FC = () => {
   const [timeRange, setTimeRange] = useState<TimeRange>('thisMonth')
-  const items = [
-    { date: '2000-01-01', value: 15000 },
-    { date: '2000-01-02', value: 25000 },
-    { date: '2000-01-03', value: 30000 },
-    { date: '2000-01-04', value: 40000 },
-    { date: '2000-01-05', value: 50000 },
-    { date: '2000-01-06', value: 60000 },
-    { date: '2000-01-07', value: 70000 },
-    { date: '2000-01-08', value: 80000 },
-    { date: '2000-01-09', value: 90000 },
-    { date: '2000-01-10', value: 100000 },
-    { date: '2000-01-11', value: 110000 },
-    { date: '2000-01-12', value: 120000 },
-    { date: '2000-01-13', value: 130000 },
-    { date: '2000-01-14', value: 140000 },
-    { date: '2000-01-15', value: 150000 },
-    { date: '2000-01-16', value: 160000 },
-    { date: '2000-01-17', value: 170000 },
-    { date: '2000-01-18', value: 180000 },
-    { date: '2000-01-19', value: 190000 },
-    { date: '2000-01-20', value: 200000 },
-    { date: '2000-01-31', value: 10000 },
-  ].map(item => ({ x: item.date, y: item.value / 100 }))
+  const { get } = useAjax({ showLoading: false, handleError: true })
+  const [kind, setKind] = useState('expenses')
+
+  const generateStartAndEnd = () => {
+    if (timeRange === 'thisMonth') {
+      const start = time().firstDayOfMonth
+      const end = time().lastDayOfMonth.add(1, 'day')
+      return { start, end }
+    } else {
+      return { start: '', end: '' }
+    }
+  }
+
+  const { start, end } = generateStartAndEnd()
+  const { data: items } = useSWR(`api/v1/items/summary?happened_after=${start}&happened_before=${end}&kind=${kind}&group_by=happen_at`,
+    async (path) =>
+      (await get<{ groups: Groups; total: number }>(path)).data.groups
+        .map(({ happened_at, amount }) => ({ x: happened_at, y: amount }))
+  )
+
+  useEffect(() => {
+  }, [items])
+
   const items2 = [
     { tag: { name: '吃饭', sign: '😨' }, amount: 10000 },
     { tag: { name: '打车', sign: '🥱' }, amount: 20000 },
@@ -66,7 +70,7 @@ export const StatisticsPage: React.FC = () => {
           <Input type="select" options={[
             { text: '支出', value: 'expenses' },
             { text: '收入', value: 'income' },
-          ]} value={x} onChange={value => setX(value)} disableError />
+          ]} value={kind} onChange={value => setX(value)} disableError />
         </div>
       </div>
       <LineChart className="h-120px" items={items} />
