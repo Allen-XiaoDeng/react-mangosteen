@@ -11,7 +11,6 @@ import { RankChart } from '../components/RankChart'
 import { Input } from '../components/Input'
 import { useAjax } from '../lib/ajax'
 import type { Time } from '../lib/time'
-import { time } from '../lib/time'
 import { timeRangeToStartAndEnd } from '../lib/timeRangeToStartAndEnd'
 
 type Groups = { happen_at: string; amount: number }[]
