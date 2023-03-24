@@ -46,8 +46,9 @@ export const TimeRangePicker: React.FC<Props> = (props) => {
       start: time(start),
       end: time(end).add(1, 'day')
     })
+    hide()
   }
-  const { popup, show } = usePopup({
+  const { popup, show, hide } = usePopup({
     zIndex: 'var(--z-dialog)',
     children:
       <div>
@@ -57,7 +58,7 @@ export const TimeRangePicker: React.FC<Props> = (props) => {
           <Input type='date' disableError label="结束时间" value={end} onChange={d => setEnd(d)} />
         </main>
         <footer text-right>
-          <button border-none bg-transparent px-16px py-8px>取消</button>
+          <button border-none bg-transparent px-16px py-8px onClick={() => hide()}>取消</button>
           <button border-none bg-transparent px-16px py-8px onClick={onConfirm}>确认</button>
         </footer>
       </div>,
