@@ -8,11 +8,16 @@ import type { TimeRange } from '../components/TimeRangePicker'
 import { Gradient } from '../components/Gradient'
 import { Icon } from '../components/Icon'
 import { timeRangeToStartAndEnd } from '../lib/timeRangeToStartAndEnd'
+import { time } from '../lib/time'
 import { ItemsList } from './ItemsPage/ItemsList'
 import { ItemsSummary } from './ItemsPage/ItemsSummary'
 
 export const ItemsPage: React.FC = () => {
-  const [timeRange, setTimeRange] = useState<TimeRange>('thisMonth')
+  const [timeRange, setTimeRange] = useState<TimeRange>({
+    name: 'thisMonth',
+    start: time().firstDayOfMonth,
+    end: time().lastDayOfMonth.add(1, 'day')
+  })
   const { start, end } = timeRangeToStartAndEnd(timeRange)
   const { visible, setVisible } = useMenuStore()
   return (
