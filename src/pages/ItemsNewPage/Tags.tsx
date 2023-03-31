@@ -31,7 +31,6 @@ export const Tags: React.FC<Props> = (props) => {
   const { data, error, size, setSize } = useSWRInfinite(
     getKey,
     async path => (await get<Resources<Tag>>(path)).data,
-    { revalidateFirstPage: false }
   )
   const isLoadingInitialData = !data && !error
   const isLoadingMore = data?.[size - 1] === undefined && !error
