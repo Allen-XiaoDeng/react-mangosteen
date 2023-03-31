@@ -20,7 +20,7 @@ set_env user "GitHub 用户名"
 set_env repo "GitHub 仓库名"
 
 rm -rf dist
-npm run build -- --base "/$repo"
+npm run build
 cd dist
 git init
 git add .

@@ -10,7 +10,7 @@ import { useLoadingStore } from '../stores/useLoadingStore'
 // 4. 函数的副作用尽量少，最好是没有
 
 export const ajax = axios.create({
-  baseURL: isDev ? '/' : 'http://121.196.236.94:8080/',
+  baseURL: isDev ? '/' : 'https://mangosteen2.hunger-valley.com',
   headers: {
     'Content-Type': 'application/json'
   },
