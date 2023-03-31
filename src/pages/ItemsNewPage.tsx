@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { BackIcon } from '../components/BackIcon'
 import { Gradient } from '../components/Gradient'
 import { Tabs } from '../components/Tabs'
@@ -24,6 +25,7 @@ export const ItemsNewPage: React.FC = () => {
           <Tags kind="income" value={data.tag_ids} onChange={(ids) => setData({ tag_ids: ids })} />
       }
     ] // React DOM diff 优化
+  const nav = useNavigate()
   const { post } = useAjax({ showLoading: true, handleError: true })
   const onSubmit = async () => {
     const error = validate(data, [
@@ -38,8 +40,8 @@ export const ItemsNewPage: React.FC = () => {
       const message = Object.values(error).flat().join('\n')
       window.alert(message)
     } else {
-      const response = await post<Resource<Item>>('/api/v1/items', data)
-      console.log(response.data.resource)
+      await post<Resource<Item>>('/api/v1/items', data)
+      nav('/items')
     }
   }
 
