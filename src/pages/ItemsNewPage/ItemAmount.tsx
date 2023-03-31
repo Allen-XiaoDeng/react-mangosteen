@@ -50,7 +50,7 @@ export const ItemAmount: React.FC<Props> = (props) => {
       <div className={className}>
         <div flex p-t-15px p-b-16px px-16px border-t-1px b-t-solid border-t="#ddd" gap-x-8px items-center>
           {props.itemDate}
-          <code grow-1 shrink-1 text-right color="#53A867">{output}</code>
+          <code grow-1 shrink-1 text-right color="#77dbcf">{output}</code>
         </div>
         <div py-1px grid children-b-none children-bg-white
           grid-cols="[repeat(4,1fr)]" grid-rows="[repeat(4,56px)]" bg="#ddd" gap-1px >
@@ -67,7 +67,7 @@ export const ItemAmount: React.FC<Props> = (props) => {
           <button type="button" row-start-4 col-start-3 row-end-5 col-end-4 onClick={() => append('.')}>.</button>
           <button type="button" row-start-1 col-start-4 row-end-3 col-end-5 onClick={clear}>清空</button>
           <button type="submit" row-start-3 col-start-4 row-end-5 col-end-5
-            bg="#5C33BE" text-white
+            bg="#8fe2de" text-white
             onClick={onSubmit}>提交</button>
         </div>
       </div>

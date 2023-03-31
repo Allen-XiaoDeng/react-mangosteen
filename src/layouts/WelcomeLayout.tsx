@@ -2,7 +2,7 @@ import { animated, useTransition } from '@react-spring/web'
 import type { ReactNode } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate, useOutlet } from 'react-router-dom'
-import logo from '../assets/images/logo.svg'
+import logo from '../assets/icons/logo.svg'
 import { useSwipe } from '../hooks/useSwipe'
 import { useLocalStore } from '../stores/useLocalStore'
 const linkMap: Record<string, string> = {
@@ -50,11 +50,11 @@ export const WelcomeLayout: React.FC = () => {
   }
 
   return (
-    <div className="bg-#5f34bf" h-screen flex flex-col items-stretch pb-16px>
+    <div className="bg-#77dbcf" h-screen flex flex-col items-stretch pb-16px>
       <span fixed text-white top-16px right-16px text-32px onClick={onSkip}>跳过</span>
       <header shrink-0 text-center pt-64px>
         <img src={logo} w-64px h-69px />
-        <h1 text="#D4D4EE" text-32px>山竹记账</h1>
+        <h1 text="#a1eaff" text-32px>叶子记账</h1>
       </header>
       <main shrink-1 grow-1 relative ref={main}>
         {transitions((style, pathname) =>

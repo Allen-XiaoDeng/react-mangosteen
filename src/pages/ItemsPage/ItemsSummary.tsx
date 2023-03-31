@@ -20,7 +20,7 @@ export const ItemsSummary: React.FC<Props> = (props) => {
         <div>收入</div>
         <div><Money value={income} /></div>
       </li>
-      <li text="#53A867">
+      <li text="#77dbcf">
         <div>支出</div>
         <div><Money value={expenses} /></div>
       </li>

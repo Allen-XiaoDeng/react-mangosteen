@@ -11,8 +11,8 @@ const MyIcon = styled(Icon)`
 `
 
 const items = [
-  { icon: 'pig', text: '记账', to: '/items' },
-  { icon: 'chart', text: '统计图表', to: '/statistics' },
+  { icon: 'home', text: '记账页面', to: '/items' },
+  { icon: 'charts', text: '统计图表', to: '/statistics' },
   { icon: 'export', text: '导出数据', to: '/export' },
   { icon: 'noty', text: '记账提醒', to: '/noty' },
 ]

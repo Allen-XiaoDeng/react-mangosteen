@@ -2,7 +2,7 @@ type Props = {
   className?: string
   items?: { name: string; value: number | string; sign: string }[]
 }
-const colors = ['#5470c6', '#ffbab0', '#ffa750', '#8748d3', '#53a867', '#eba953', '#91cc75', '#fac858', '#ee6666', '#73c0de']
+const colors = ['#5470c6', '#ffbab0', '#ffa750', '#8748d3', '#77dbcf', '#eba953', '#91cc75', '#fac858', '#ee6666', '#73c0de']
 export const RankChart: React.FC<Props> = (props) => {
   const { className, items } = props
   const total = items?.reduce((result, item) => result + parseFloat(item.value.toString()), 0) ?? 0
