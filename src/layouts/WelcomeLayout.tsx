@@ -9,7 +9,7 @@ const linkMap: Record<string, string> = {
   '/welcome/1': '/welcome/2',
   '/welcome/2': '/welcome/3',
   '/welcome/3': '/welcome/4',
-  '/welcome/4': '/welcome/xxx',
+  '/welcome/4': '/home',
 }
 export const WelcomeLayout: React.FC = () => {
   const animating = useRef(false)
@@ -46,7 +46,7 @@ export const WelcomeLayout: React.FC = () => {
   const { setHasReadWelcomes } = useLocalStore()
   const onSkip = () => {
     setHasReadWelcomes(true)
-    nav('/welcome/xxx')
+    nav('/home')
   }
 
   return (
