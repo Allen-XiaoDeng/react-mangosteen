@@ -6,11 +6,9 @@ import 'virtual:uno.css'
 import './app.scss'
 import 'virtual:svgsprites'
 import { App } from './App'
-import { setup } from './lib/ajax'
 
 vhCheck()
 
-setup()
 const div = document.getElementById('root') as HTMLElement
 const root = ReactDOM.createRoot(div)
 root.render(
