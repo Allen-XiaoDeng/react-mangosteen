@@ -31,7 +31,7 @@ export const SignInPage: React.FC = () => {
     setError(newError)
     if (!hasError(newError)) {
       // 发送请求
-      const response = await post<{ jwt: string }>('http://106.14.66.155:8080/api/v1/session', data)
+      const response = await post<{ jwt: string }>('http://121.196.236.94:8080/api/v1/session', data)
         .catch(onSubmitError)
 
       // 获取 JWT
@@ -52,7 +52,7 @@ export const SignInPage: React.FC = () => {
     ])
     setError(newError)
     if (hasError(newError)) { throw new Error('表单出错') }
-    const response = await post('http://106.14.66.155:8080/api/v1/validation_codes', {
+    const response = await post('http://121.196.236.94:8080/api/v1/validation_codes', {
       email: data.email
     })
     return response
