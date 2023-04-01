@@ -1,7 +1,7 @@
 import { Outlet, createHashRouter } from 'react-router-dom'
 import type { AxiosError } from 'axios'
 import { Suspense, lazy } from 'react'
-import { Root } from '../components/Root'
+import { RootPage } from '../pages/RootPage'
 import { WelcomeLayout } from '../layouts/WelcomeLayout'
 import { ItemsPage } from '../pages/ItemsPage'
 import { ItemsNewPage } from '../pages/ItemsNewPage'
@@ -25,7 +25,7 @@ const StatisticsPage = lazy(() => import('../pages/StatisticsPage'))
 export const router = createHashRouter([
   {
     path: '/',
-    element: <Root />
+    element: <RootPage />
   },
   {
     path: '/home',
