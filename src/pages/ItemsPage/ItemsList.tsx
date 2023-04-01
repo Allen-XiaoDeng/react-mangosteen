@@ -63,9 +63,16 @@ export const ItemsList: React.FC<Props> = (props) => {
               <div row-start-2 col-start-2 row-end-3 col-end-4 text="#999999">
                 {time(item.happen_at).format('yyyy-MM-dd HH:mm')}
               </div>
-              <div row-start-1 col-start-3 row-end-2 col-end-4 text="#77dbcf">
-                ￥{item.amount / 100}
-              </div>
+
+              {
+                item.kind === 'income'
+                  ? <div row-start-1 col-start-3 row-end-2 col-end-4 text="#ff6b6b">
+                    ￥{item.amount / 100}
+                  </div>
+                  : <div row-start-1 col-start-3 row-end-2 col-end-4 text="#77dbcf">
+                    ￥{item.amount / 100}
+                  </div>
+              }
             </li>
           )
         })

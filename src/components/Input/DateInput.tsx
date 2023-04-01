@@ -7,11 +7,13 @@ type Props = {
   onChange?: (v: string) => void
   className?: string
   placeholder?: string
+  model?: string
 }
 export const DateInput: React.FC<Props> = (props) => {
-  const { value, onChange, className, placeholder } = props
+  const { value, onChange, className, placeholder, model } = props
   const { toggle, popup, hide } = usePopup({
     children: <Datepicker
+      model={model}
       onConfirm={d => { onChange?.(time(d).format()); hide() }}
       onCancel={() => hide()} />
   })

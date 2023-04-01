@@ -42,7 +42,7 @@ export const Input = <T extends string>(props: Props<T>) => {
       case 'sms_code':
         return <SmsCodeInput {...common} request={props.request} />
       case 'date':
-        return <DateInput {...common} />
+        return <DateInput model='simple' {...common} />
       default:
         return null
     }

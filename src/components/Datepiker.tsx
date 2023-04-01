@@ -8,6 +8,7 @@ type Props = {
   onChange?: (value: Date) => void
   onCancel?: () => void
   onConfirm?: (value: Date) => void
+  model?: string
 }
 
 type ColumnProps = {
@@ -73,7 +74,7 @@ export const Column: React.FC<ColumnProps> = (props) => {
 // useRef + forceUpdate
 const getNow = () => time().set({ hours: 0, minutes: 0, seconds: 0, ms: 0 })
 export const Datepicker: React.FC<Props> = (props) => {
-  const { start, end, value, onConfirm, onCancel } = props
+  const { start, end, value, onConfirm, onCancel, model } = props
   const startTime = start ? time(start) : getNow().add(-10, 'years')
   const endTime = end ? time(end) : getNow().add(10, 'year')
   if (endTime.timestamp <= startTime.timestamp) {
@@ -94,13 +95,22 @@ export const Datepicker: React.FC<Props> = (props) => {
         <span>时间选择</span>
         <span onClick={() => onConfirm?.(valueTime.current.date)}>确定</span>
       </div>
-      <div flex children-grow-1 text-center children-p-16px>
-        <span>年</span>
-        <span>月</span>
-        <span>日</span>
-        <span>时</span>
-        <span>分</span>
-      </div>
+
+      {
+        model === 'simple'
+          ? <div flex children-grow-1 text-center children-p-16px>
+            <span>年</span>
+            <span>月</span>
+            <span>日</span>
+          </div>
+          : <div flex children-grow-1 text-center children-p-16px>
+            <span>年</span>
+            <span>月</span>
+            <span>日</span>
+            <span>时</span>
+            <span>分</span>
+          </div>
+      }
       <div flex>
         <Column className="grow-1" items={yearList} value={valueTime.current.year}
           onChange={(v) => {
@@ -117,10 +127,18 @@ export const Datepicker: React.FC<Props> = (props) => {
             valueTime.current.day = v
             update({})
           }} />
-        <Column className="grow-1" items={hoursList} value={valueTime.current.hours}
-          onChange={v => { valueTime.current.hours = v; update({}) }} />
-        <Column className="grow-1" items={minutesList} value={valueTime.current.minutes}
-          onChange={v => { valueTime.current.minutes = v; update({}) }} />
+
+        {
+          model === 'simple'
+            ? <></>
+            : <>
+              <Column className="grow-1" items={hoursList} value={valueTime.current.hours}
+                onChange={v => { valueTime.current.hours = v; update({}) }} />
+              <Column className="grow-1" items={minutesList} value={valueTime.current.minutes}
+                onChange={v => { valueTime.current.minutes = v; update({}) }} />
+            </>
+        }
+
       </div>
     </div>
   )
