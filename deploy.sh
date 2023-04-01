@@ -22,6 +22,7 @@ set_env repo "GitHub 仓库名"
 rm -rf dist
 npm run build
 cd dist
+echo leaf-react.deng.gl > CNAME
 git init
 git add .
 git commit -m "deploy"
