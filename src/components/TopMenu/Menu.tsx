@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useMatch } from 'react-router-dom'
 import styled from 'styled-components'
 import { Icon } from '../Icon'
 
@@ -20,13 +20,20 @@ const items = [
 export const Menu: React.FC<Props> = ({ className }) => {
   return (
     <ul className={className} bg-white text-20px py-16px>
-      {items.map(item =>
-        <li key={item.to}>
-          <NavLink flex items-center px-16px py-8px mb-4px to={item.to}>
-            <MyIcon name={item.icon} />{item.text}
-          </NavLink>
-        </li>
+      {items.map(item => {
+        const match = useMatch(item.to)
+        return (
+          <li key={item.to}>
+            <NavLink flex items-center px-16px py-8px mb-4px to={item.to}
+              style={match ? { backgroundColor: '#f0f0f0' } : {}}
+            >
+              <MyIcon name={item.icon} />{item.text}
+            </NavLink>
+          </li>
+        )
+      }
       )}
     </ul>
+
   )
 }
